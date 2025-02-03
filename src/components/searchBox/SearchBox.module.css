@@ -1,0 +1,13 @@
+.labelSearchBox {
+  font-size: 18px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.inputSearchBox {
+  width: 250px;
+  padding: 5px 10px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid black;
+}
