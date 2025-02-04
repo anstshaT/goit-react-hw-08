@@ -2,7 +2,7 @@ import { FaUser } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import s from "./Contacts.module.css";
 
-const Contacts = ({ name, number }) => {
+const Contacts = ({ name, number, id, onDelete }) => {
   return (
     <div className={s.mainDiv}>
       <div className={s.infoDiv}>
@@ -15,7 +15,9 @@ const Contacts = ({ name, number }) => {
           <p className={s.number}>{number}</p>
         </div>
       </div>
-      <button className={s.deleteBtn}>Delete</button>
+      <button className={s.deleteBtn} onClick={() => onDelete(id)}>
+        Delete
+      </button>
     </div>
   );
 };

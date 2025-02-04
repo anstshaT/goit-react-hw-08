@@ -1,30 +1,69 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
+import * as Yup from "yup";
+import s from "./ContactForm.module.css";
+
+const ContactSchema = Yup.object().shape({
+  contactName: Yup.string()
+    .min(3, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  number: Yup.string()
+    .min(3, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+});
 
 const initialValues = {
   contactName: "",
   number: "",
 };
 
-const ContactForm = () => {
+const ContactForm = ({ onAddContact }) => {
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    onAddContact({ name: values.contactName, number: values.number });
     actions.resetForm();
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form>
-        <label htmlFor={nameFieldId}>Name</label>
-        <Field type="text" name="contactName" id={nameFieldId}></Field>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={ContactSchema}
+    >
+      <Form className={s.form}>
+        <label htmlFor={nameFieldId} className={s.formLabel}>
+          Name
+        </label>
+        <Field
+          type="text"
+          name="contactName"
+          id={nameFieldId}
+          className={s.formInput}
+        ></Field>
+        <ErrorMessage
+          name="contactName"
+          component="p"
+          className={s.formError}
+        />
 
-        <label htmlFor={numberFieldId}>Number</label>
-        <Field type="number" id={numberFieldId} name="number"></Field>
+        <label htmlFor={numberFieldId} className={s.formLabel}>
+          Number
+        </label>
+        <Field
+          type="telephone"
+          id={numberFieldId}
+          name="number"
+          className={s.formInput}
+        ></Field>
+        <ErrorMessage name="number" component="p" className={s.formError} />
 
-        <button type="submit">Add contact</button>
+        <button type="submit" className={s.formBtn}>
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
