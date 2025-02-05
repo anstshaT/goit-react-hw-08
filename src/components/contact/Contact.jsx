@@ -1,6 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import s from "./Contacts.module.css";
+import s from "./Contact.module.css";
 
 const Contacts = ({ name, number, id, onDelete }) => {
   return (

@@ -1,4 +1,4 @@
-import Contacts from "../contacts/Contacts";
+import Contacts from "../contact/Contact";
 import s from "./ContactList.module.css";
 
 const ContactList = ({ contNames, onDelete }) => {
