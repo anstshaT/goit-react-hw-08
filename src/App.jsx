@@ -15,32 +15,12 @@ function App() {
     window.localStorage.setItem("saved-contacts", JSON.stringify(contacts));
   }, [contacts]);
 
-  /* Пошук */
-  const [filter, setFilter] = useState("");
-  const filterNames = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
-  /* Додавання контакта */
-  const addContact = (newContact) => {
-    setContacts((prevContacts) => {
-      return [...prevContacts, newContact];
-    });
-  };
-
-  /* Видалення контактів */
-  const deleteContact = (id) => {
-    setContacts((prevContacts) => {
-      return prevContacts.filter((contact) => contact.id !== id);
-    });
-  };
-
   return (
     <>
       <h1>Phonebook</h1>
-      <ContactForm onAddContact={addContact} />
-      <SearchBox value={filter} onFilter={setFilter} />
-      <ContactList contNames={filterNames} onDelete={deleteContact} />
+      <ContactForm />
+      <SearchBox />
+      <ContactList />
     </>
   );
 }
