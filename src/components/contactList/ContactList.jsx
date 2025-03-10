@@ -8,6 +8,7 @@ const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectNameFilter);
   console.log("Filter", filter);
+  console.log("SelectContacts", selectContacts);
 
   const filterCont = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())

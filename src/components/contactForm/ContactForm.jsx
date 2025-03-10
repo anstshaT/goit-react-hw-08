@@ -29,7 +29,6 @@ const ContactForm = () => {
   const handleSubmit = (values, actions) => {
     dispatch(
       addContact({
-        id: values.id,
         name: values.contactName,
         number: values.number,
       })
