@@ -33,7 +33,6 @@ const ContactForm = () => {
         number: values.number,
       })
     );
-    console.log(values.id);
 
     actions.resetForm();
   };
