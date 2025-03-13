@@ -1,7 +1,13 @@
 import { Field, Form, Formik } from "formik";
 import s from "./RegistrationForm.module.css";
+import { useDispatch } from "react-redux";
+import { registerThunk } from "../../redux/auth/operations";
+import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const initialValues = {
     name: "",
     email: "",
@@ -10,6 +16,10 @@ const RegistrationForm = () => {
 
   const handleSubmit = (values, options) => {
     console.log(values);
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then(() => navigate("/contacts", { replace: true }))
+      .catch(() => toast.error("Something went wrong, try again"));
     options.resetForm();
   };
 

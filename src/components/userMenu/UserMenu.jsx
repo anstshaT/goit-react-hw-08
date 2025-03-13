@@ -1,33 +1,30 @@
-import { NavLink } from "react-router-dom";
-import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
 import s from "./UserMenu.module.css";
-
-const buildLinkClass = ({ isActive }) => {
-  return clsx(s.userMenuLink, isActive && s.active);
-};
+import { logOutThunk } from "../../redux/auth/operations";
+import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
+import { selectUser } from "../../redux/auth/selectors";
 
 const UserMenu = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector(selectUser);
+
+  const handleClick = () => {
+    dispatch(logOutThunk())
+      .unwrap()
+      .then(() => {
+        navigate("/login", { replace: true });
+        toast.success("Logged out successfully");
+      })
+      .catch(() => toast.error("Wrong email or password"));
+  };
   return (
     <div className={s.userMenu}>
-      <nav className={s.userMenuNav}>
-        <div className={s.homeAndContacts}>
-          <NavLink to="/" className={buildLinkClass}>
-            Home
-          </NavLink>
-          <NavLink to="/contacts" className={buildLinkClass}>
-            Contacts
-          </NavLink>
-        </div>
-
-        <div className={s.homeAndContacts}>
-          <NavLink to="/register" className={buildLinkClass}>
-            Register
-          </NavLink>
-          <NavLink to="/login" className={buildLinkClass}>
-            Log In
-          </NavLink>
-        </div>
-      </nav>
+      <p className={s.email}>Welcome, {user.email}</p>
+      <button className={s.btn} onClick={handleClick}>
+        Log Out
+      </button>
     </div>
   );
 };

@@ -1,7 +1,13 @@
 import { Field, Form, Formik } from "formik";
 import s from "./LoginForm.module.css";
+import { useDispatch } from "react-redux";
+import { logInThunk } from "../../redux/auth/operations";
+import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
@@ -9,6 +15,10 @@ const LoginForm = () => {
 
   const handleSubmit = (values, options) => {
     console.log(values);
+    dispatch(logInThunk(values))
+      .unwrap()
+      .then(() => navigate("/contacts", { replace: true }))
+      .catch(() => toast.error("Wrong email or password"));
     options.resetForm();
   };
 

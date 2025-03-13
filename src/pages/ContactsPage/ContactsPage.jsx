@@ -3,9 +3,9 @@ import ContactForm from "../../components/contactForm/ContactForm";
 import ContactList from "../../components/contactList/ContactList";
 import SearchBox from "../../components/searchBox/SearchBox";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
-import s from "./Contacts.module.css";
+import s from "./ContactsPage.module.css";
 
-const Contacts = () => {
+const ContactsPage = () => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
@@ -19,4 +19,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default ContactsPage;
