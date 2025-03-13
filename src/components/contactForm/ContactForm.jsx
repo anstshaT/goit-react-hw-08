@@ -3,7 +3,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const ContactSchema = Yup.object().shape({
   contactName: Yup.string()
@@ -45,30 +45,30 @@ const ContactForm = () => {
     >
       <Form className={s.form}>
         <label htmlFor={nameFieldId} className={s.formLabel}>
-          Name
+          <span className={s.span}>Name</span>
+          <Field
+            type="text"
+            name="contactName"
+            id={nameFieldId}
+            className={s.formInput}
+          ></Field>
+          <ErrorMessage
+            name="contactName"
+            component="p"
+            className={s.formError}
+          />
         </label>
-        <Field
-          type="text"
-          name="contactName"
-          id={nameFieldId}
-          className={s.formInput}
-        ></Field>
-        <ErrorMessage
-          name="contactName"
-          component="p"
-          className={s.formError}
-        />
 
         <label htmlFor={numberFieldId} className={s.formLabel}>
-          Number
+          <span className={s.span}>Number</span>
+          <Field
+            type="telephone"
+            id={numberFieldId}
+            name="number"
+            className={s.formInput}
+          ></Field>
+          <ErrorMessage name="number" component="p" className={s.formError} />
         </label>
-        <Field
-          type="telephone"
-          id={numberFieldId}
-          name="number"
-          className={s.formInput}
-        ></Field>
-        <ErrorMessage name="number" component="p" className={s.formError} />
 
         <button type="submit" className={s.formBtn}>
           Add contact
