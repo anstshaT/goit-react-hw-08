@@ -1,7 +1,6 @@
 import "./App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchContacts } from "./redux/contacts/operations";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import Layout from "./components/Layout";
@@ -10,15 +9,18 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import NotFound from "./pages/NotFound/NotFound";
 import { Toaster } from "react-hot-toast";
+import { refreshUser } from "./redux/auth/operations";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 
 function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? null : (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
