@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import s from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/auth/operations";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
@@ -24,7 +24,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
+    <div className={s.div}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
           <label className={s.label}>
@@ -44,6 +44,12 @@ const RegistrationForm = () => {
           </button>
         </Form>
       </Formik>
+      <p className={s.pText}>
+        Already have an account?{" "}
+        <Link to="/login" className={s.pLink}>
+          Log in now!
+        </Link>
+      </p>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import s from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
 import { logInThunk } from "../../redux/auth/operations";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 const LoginForm = () => {
@@ -23,7 +23,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div className={s.div}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
           <label className={s.label}>
@@ -39,6 +39,12 @@ const LoginForm = () => {
           </button>
         </Form>
       </Formik>
+      <p className={s.pText}>
+        Don&apos;t have an account?{" "}
+        <Link to="/register" className={s.pLink}>
+          Sign up now!
+        </Link>
+      </p>
     </div>
   );
 };
