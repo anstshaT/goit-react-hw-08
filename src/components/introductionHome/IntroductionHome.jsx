@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import s from "./IntroductionHome.module.css";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import img from "../../image/img_1.png";
 
 const IntroductionHome = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -21,7 +22,7 @@ const IntroductionHome = () => {
           </Link>
         )}
       </div>
-      <img src="/src/image/img_1.png" alt="man with phone in hand" />
+      <img src={img} alt="man with phone in hand" />
     </div>
   );
 };
