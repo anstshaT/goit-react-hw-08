@@ -5,6 +5,7 @@ import { selectFilteredContacts } from "../../redux/contacts/selectors";
 
 const ContactList = () => {
   const filterCont = useSelector(selectFilteredContacts);
+  console.log(filterCont);
 
   return (
     <ul className={s.contactList}>
