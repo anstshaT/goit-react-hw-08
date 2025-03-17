@@ -8,18 +8,18 @@
 
 .email {
   font-size: 25px;
-  color: rgb(116, 43, 200);
+  color: #6254cd;
   font-style: italic;
 }
 
 .btn {
   font-size: 18px;
   color: aliceblue;
-  background-color: rgb(168, 118, 225);
+  background-color: #8372fe;
   transition: background-color 200ms linear, border 200ms linear;
 }
 
 .btn:hover {
-  background-color: rgb(116, 43, 200);
+  background-color: #6254cd;
   border: 1px solid black;
 }

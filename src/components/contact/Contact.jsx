@@ -37,12 +37,14 @@ const Contacts = ({ contact }) => {
           <p className={s.number}>{contact.number}</p>
         </div>
       </div>
-      <button className={s.deleteBtn} onClick={handleDelete}>
-        Delete
-      </button>
-      <button className={s.deleteBtn} onClick={() => setEditMode(true)}>
-        Edit
-      </button>
+      <div className={s.btnDiv}>
+        <button className={s.deleteBtn} onClick={handleDelete}>
+          Delete
+        </button>
+        <button className={s.deleteBtn} onClick={() => setEditMode(true)}>
+          Edit
+        </button>
+      </div>
     </div>
   );
 };
