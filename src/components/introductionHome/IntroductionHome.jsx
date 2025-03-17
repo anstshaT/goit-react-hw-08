@@ -14,11 +14,11 @@ const IntroductionHome = () => {
           storing phone numbers
         </p>
         {!isLoggedIn && (
-          <button type="click" className={s.btn}>
-            <Link to="/register" className={s.btnText}>
+          <Link to="/register">
+            <button type="click" className={s.btn}>
               Sign Up
-            </Link>
-          </button>
+            </button>
+          </Link>
         )}
       </div>
       <img src="/src/image/img_1.png" alt="man with phone in hand" />

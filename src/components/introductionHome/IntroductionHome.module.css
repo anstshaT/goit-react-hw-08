@@ -16,20 +16,20 @@
 }
 
 .btn {
-  background-color: #8372fe;
-  transition: background-color 200ms linear, border 200ms linear;
+  font-size: 20px;
+  color: #8372fe;
+  text-decoration: none;
+  background-color: transparent;
+  transition: background-color 200ms linear, border 200ms linear,
+    color 200ms linear;
   margin-top: 10px;
+  border: 1px solid #8372fe;
 }
 
 .btn:hover {
-  background-color: #6254cd;
+  background-color: #8372fe;
   border: 1px solid black;
-}
-
-.btnText {
-  font-size: 20px;
   color: aliceblue;
-  text-decoration: none;
 }
 
 .joinText {
