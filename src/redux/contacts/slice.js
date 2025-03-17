@@ -3,7 +3,8 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
-  editContact,
+  editContactName,
+  editContactNumber,
 } from "./operations";
 import { logOutThunk } from "../auth/operations";
 
@@ -52,9 +53,13 @@ const slice = createSlice({
         state.error = null;
         state.loading = false;
       })
-      .addCase(editContact.fulfilled, (state, action) => {
+      .addCase(editContactName.fulfilled, (state, action) => {
         const item = state.items.find((item) => item.id === action.payload.id);
         item.name = action.payload.name;
+      })
+      .addCase(editContactNumber.fulfilled, (state, action) => {
+        const item = state.items.find((item) => item.id === action.payload.id);
+        item.number = action.payload.number;
       });
   },
 });

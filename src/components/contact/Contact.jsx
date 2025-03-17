@@ -2,7 +2,11 @@ import { FaUser } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import s from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact, editContact } from "../../redux/contacts/operations";
+import {
+  deleteContact,
+  editContactName,
+  editContactNumber,
+} from "../../redux/contacts/operations";
 import { useState } from "react";
 
 const Contacts = ({ contact }) => {
@@ -23,7 +27,7 @@ const Contacts = ({ contact }) => {
                 value={value.name}
                 onChange={(e) => setValue(e.target.value)}
                 onBlur={() => {
-                  dispatch(editContact({ id: contact.id, name: value }));
+                  dispatch(editContactName({ id: contact.id, name: value }));
                   setEditMode(false);
                 }}
               />
@@ -34,7 +38,23 @@ const Contacts = ({ contact }) => {
         </div>
         <div className={s.numberDiv}>
           <BsFillTelephoneFill />
-          <p className={s.number}>{contact.number}</p>
+          {editMode ? (
+            <div>
+              <input
+                type="text"
+                value={value.number}
+                onChange={(e) => setValue(e.target.value)}
+                onBlur={() => {
+                  dispatch(
+                    editContactNumber({ id: contact.id, number: value })
+                  );
+                  setEditMode(false);
+                }}
+              />
+            </div>
+          ) : (
+            <p className={s.number}>{contact.number}</p>
+          )}
         </div>
       </div>
       <div className={s.btnDiv}>
